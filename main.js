@@ -45,9 +45,8 @@ let board = new Board(ctx, ctxNext);
 addEventListener();
 initNext();
 
-
+// Инициализаия поля следующей фигуры
 function initNext() {
-  // Инициализаия поля следующей фигуры
   ctxNext.canvas.width = 4 * BLOCK_SIZE;
   ctxNext.canvas.height = 4 * BLOCK_SIZE;
   ctxNext.scale(BLOCK_SIZE, BLOCK_SIZE);
