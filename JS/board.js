@@ -33,7 +33,7 @@ class Board {
         this.getNewPiece();
     }
 
-
+    //Новая фигурка 
     getNewPiece() {
         this.next = new Piece(this.ctxNext);
         this.ctxNext.clearRect(
