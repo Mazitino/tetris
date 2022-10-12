@@ -76,7 +76,7 @@ const POINTS = {
   }
   Object.freeze(POINTS);
   
-  //Уровни
+  //Уровни / скороть
   const LEVEL = {
     0: 800,
     1: 720,
