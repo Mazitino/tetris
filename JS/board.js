@@ -45,22 +45,23 @@ class Board {
         this.next.draw();
     }
     
-
+    //Отрисовка
     draw() {
         this.piece.draw();
         this.drawBoard();
     }
 
-
+    //Уронить фигурку 
     drop() {
         let p = moves[KEY.DOWN](this.piece);
         if (this.valid(p)) {
             this.piece.move(p);
         } else {
             this.freeze();
+            console.table(this.grid);
             this.clearLines();
             if (this.piece.y === 0) {
-                // Game over
+                // Конец игры !!! если координат фигурки по y = 0
                 return false;
             }
             this.piece = this.next;
@@ -71,7 +72,7 @@ class Board {
         return true;
     }
 
-
+    //Проверка заполнения ряда упавшими фигурками и очистка
     clearLines() {
         let lines = 0;
         this.grid.forEach((row, y) => {
@@ -127,7 +128,7 @@ class Board {
         });
     } 
 
-
+    //Отрисовка поля с упавшими фигурками
     drawBoard() {
         // Свойства для отрисовки
         this.ctx.strokeStyle = 'white';
@@ -164,7 +165,7 @@ class Board {
         return this.grid[y] && this.grid[y][x] === 0;
     }
     
-    
+
     rotate(piece){
         // Клонирование матрицы
         let p = JSON.parse(JSON.stringify(piece));
@@ -180,17 +181,17 @@ class Board {
         return p;
     }
     
-
+    //Очки за стирание заполненных рядов
     getLinesClearedPoints(lines, level) {
         const lineClearPoints =
           lines === 1
-            ? POINTS.SINGLE
+            ? POINTS.SINGLE //100
             : lines === 2
-            ? POINTS.DOUBLE
+            ? POINTS.DOUBLE //300
             : lines === 3
-            ? POINTS.TRIPLE
+            ? POINTS.TRIPLE //500
             : lines === 4
-            ? POINTS.TETRIS
+            ? POINTS.TETRIS //800
             : 0;
     
         return (account.level + 1) * lineClearPoints;

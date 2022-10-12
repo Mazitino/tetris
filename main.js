@@ -11,7 +11,7 @@ let accountValues = {
   lines: 0
 }
 
-
+//Обновление очков 
 function updateAccount(key, value) {
   let element = document.getElementById(key);
   if (element) {
@@ -19,7 +19,7 @@ function updateAccount(key, value) {
   }
 }
 
-
+//При каждом изменении account будут обновляться очки
 let account = new Proxy(accountValues, {
   set: (target, key, value) => {
     target[key] = value;
@@ -71,7 +71,7 @@ function addEventListener() {
       if (event.keyCode === KEY.SPACE) {
         // Падение пробел
         while (board.valid(p)) {
-          account.score += POINTS.HARD_DROP;
+          account.score += POINTS.HARD_DROP; //Очки за пробел +2 за строку
           board.piece.move(p);   
           p = moves[KEY.DOWN](board.piece);
         }
@@ -79,7 +79,7 @@ function addEventListener() {
         // реальное перемещение фигурки, если новое положение допустимо
         board.piece.move(p);
         if (event.keyCode === KEY.DOWN) {
-          account.score += POINTS.SOFT_DROP;         
+          account.score += POINTS.SOFT_DROP; //Очки за down +1 за строку       
         }
       }
     }
@@ -87,7 +87,7 @@ function addEventListener() {
 
 }
 
-
+//Логика начала новой игры
 function resetGame() {
   account.score = 0;
   account.lines = 0;
@@ -117,7 +117,7 @@ function animate(now = 0) {
     // начать отсчет сначала
     time.start = now;     
     if (!board.drop()) {
-      gameOver();
+      gameOver(); //Конец игры
       return;
     } 
   }
@@ -128,31 +128,31 @@ function animate(now = 0) {
   requestId = requestAnimationFrame(animate);
 }
 
-
+//Конец игры - вывод соощения 
 function gameOver() {
-  cancelAnimationFrame(requestId);
+  cancelAnimationFrame(requestId); //стоп анимации
   ctx.fillStyle = 'rgb(44, 44, 44)';
   ctx.fillRect(1, 3, 8, 1.2);
   ctx.font = '1px Arial';
   ctx.fillStyle = 'white';
-  ctx.fillText('GAME OVER', 1.8, 4);
+  ctx.fillText('Конец игры', 1.8, 4);
 }
 
-
+//Пауза - выврд сообщения
 function pause() {
   if (!requestId) {
     animate();
     return;
   }
 
-  cancelAnimationFrame(requestId);
+  cancelAnimationFrame(requestId); //стоп анимации
   requestId = null;
   
   ctx.fillStyle = 'rgb(44, 44, 44)';
   ctx.fillRect(1, 3, 8, 1.2);
   ctx.font = '1px Arial';
   ctx.fillStyle = 'yellow';
-  ctx.fillText('PAUSED', 3, 4);
+  ctx.fillText('ПАУЗА', 3, 4);
 }
 
 
