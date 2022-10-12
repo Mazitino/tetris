@@ -164,7 +164,7 @@ class Board {
         return this.grid[y] && this.grid[y][x] === 0;
     }
     
-
+    
     rotate(piece){
         // Клонирование матрицы
         let p = JSON.parse(JSON.stringify(piece));

@@ -11,8 +11,9 @@ class Piece {
         this.spawn();
     }
     
+    //Создание - выбор типа фигурки и цвета - рандом
     spawn() {
-        this.typeId = this.randomizeTetrominoType(COLORS.length - 1);
+        this.typeId = this.randomizeType(COLORS.length - 1);
         this.shape = SHAPES[this.typeId];
         this.color = COLORS[this.typeId];
         this.x = 0;
@@ -47,11 +48,11 @@ class Piece {
 
     // Начальная позиция
     setStartingPosition() {
-        this.x = this.typeId === 4 ? 4 : 3;
+        this.x = this.typeId === 7 ? 4 : 3;
     }
 
     // Рандом
-    randomizeTetrominoType(noOfTypes) {
+    randomizeType(noOfTypes) {
         return Math.floor(Math.random() * noOfTypes + 1);
     }
     

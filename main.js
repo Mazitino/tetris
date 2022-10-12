@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const canvasNext = document.getElementById('next');
 const ctxNext = canvasNext.getContext('2d');
 
-
+//Хранение очков
 let accountValues = {
   score: 0,
   level: 0,
@@ -69,7 +69,7 @@ function addEventListener() {
       let p = moves[event.keyCode](board.piece);
       
       if (event.keyCode === KEY.SPACE) {
-        // Жесткое падение
+        // Падение пробел
         while (board.valid(p)) {
           account.score += POINTS.HARD_DROP;
           board.piece.move(p);   
