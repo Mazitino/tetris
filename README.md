@@ -1,4 +1,4 @@
-# tetris
+# TETRIS
 JavaScript + Canvas
 
-Link: https://mazitino.github.io/tetris/
+### Link to play: https://mazitino.github.io/tetris/
